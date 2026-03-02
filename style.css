@@ -1,0 +1,595 @@
+/* リセットと基本スタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2e7d32;
+    --primary-dark: #1b5e20;
+    --secondary-color: #1976d2;
+    --danger-color: #c62828;
+    --danger-light: #ef5350;
+    --plus-color: #4caf50;
+    --plus-bg: #e8f5e9;
+    --minus-color: #f44336;
+    --minus-bg: #ffebee;
+    --bg-color: #f5f5f5;
+    --card-bg: #ffffff;
+    --text-color: #212121;
+    --text-secondary: #757575;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+}
+
+/* 画面切り替え */
+.screen {
+    display: none;
+    min-height: 100vh;
+}
+
+.screen.active {
+    display: block;
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 共通ボタンスタイル */
+button {
+    font-family: inherit;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 16px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+    padding: 12px 20px;
+    background-color: var(--card-bg);
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.btn-secondary:hover {
+    background-color: #e3f2fd;
+}
+
+.btn-danger {
+    padding: 12px 20px;
+    background-color: var(--danger-color);
+    color: white;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-light);
+}
+
+.btn-header {
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* スタート画面 */
+#start-screen {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
+#start-screen .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.app-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.player-setup {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.player-setup h2 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+}
+
+#player-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.player-input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.player-name-input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.player-name-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.btn-remove-player {
+    width: 48px;
+    background-color: var(--minus-bg);
+    color: var(--minus-color);
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.btn-remove-player:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+#btn-add-player {
+    width: 100%;
+}
+
+.resume-section {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+.resume-section p {
+    margin-bottom: 12px;
+    opacity: 0.9;
+}
+
+.resume-section .btn-secondary {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* メイン画面 */
+#main-screen {
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#main-screen.active {
+    display: flex;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.main-header h1 {
+    font-size: 1.3rem;
+}
+
+/* ランキングセクション */
+.ranking-section {
+    background-color: var(--card-bg);
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ranking-section h2 {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.ranking-list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ranking-item {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+    padding: 12px;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+}
+
+.ranking-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ranking-score {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.ranking-score.positive {
+    color: var(--plus-color);
+}
+
+.ranking-score.negative {
+    color: var(--minus-color);
+}
+
+/* タブ */
+.tab-container {
+    display: flex;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 56px;
+    z-index: 99;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 14px 8px;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* イベントパネル */
+.event-panel {
+    display: none;
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.event-panel.active {
+    display: block;
+}
+
+.event-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    min-height: auto;
+    gap: 12px;
+}
+
+.event-card:active {
+    transform: scale(0.97);
+}
+
+.event-card.plus {
+    background-color: var(--plus-bg);
+    border: 2px solid var(--plus-color);
+}
+
+.event-card.minus {
+    background-color: var(--minus-bg);
+    border: 2px solid var(--minus-color);
+}
+
+.event-card.owned {
+    box-shadow: 0 0 0 3px var(--secondary-color);
+}
+
+.event-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.event-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.event-description {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+}
+
+.event-points {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.event-card.plus .event-points {
+    color: var(--plus-color);
+}
+
+.event-card.minus .event-points {
+    color: var(--minus-color);
+}
+
+.event-owner {
+    font-size: 0.75rem;
+    color: var(--secondary-color);
+    margin-top: 2px;
+}
+
+/* 所持状況パネル */
+.status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.status-player {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.status-player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.status-player-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.status-player-score {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.status-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.status-item {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-item.plus {
+    background-color: var(--plus-bg);
+    color: var(--plus-color);
+}
+
+.status-item.minus {
+    background-color: var(--minus-bg);
+    color: var(--minus-color);
+}
+
+.status-empty {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* モーダル */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 360px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.modal-players {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-player-btn {
+    padding: 16px;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.modal-player-btn:hover {
+    background-color: var(--border-color);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-buttons button {
+    flex: 1;
+}
+
+#btn-cancel-modal {
+    width: 100%;
+}
+
+/* レスポンシブ */
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+    }
+}
+
+/* セーフエリア対応 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .modal {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal.active .modal-content {
+    animation: slideUp 0.2s ease-out;
+}
+
+.screen.active {
+    animation: fadeIn 0.2s ease-out;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Golf Quest - ポイント計算</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- スタート画面 -->
+    <div id="start-screen" class="screen active">
+        <div class="container">
+            <h1 class="app-title">Golf Quest</h1>
+            <p class="subtitle">ゴルフポイント計算アプリ</p>
+            
+            <div class="player-setup">
+                <h2>プレイヤー登録</h2>
+                <div id="player-inputs">
+                    <div class="player-input-row">
+                        <input type="text" class="player-name-input" placeholder="プレイヤー1" maxlength="10">
+                        <button class="btn-remove-player" disabled>×</button>
+                    </div>
+                    <div class="player-input-row">
+                        <input type="text" class="player-name-input" placeholder="プレイヤー2" maxlength="10">
+                        <button class="btn-remove-player" disabled>×</button>
+                    </div>
+                </div>
+                <button id="btn-add-player" class="btn-secondary">+ プレイヤー追加</button>
+            </div>
+            
+            <button id="btn-start-game" class="btn-primary">ゲーム開始</button>
+            
+            <div id="resume-section" class="resume-section hidden">
+                <p>前回のゲームデータがあります</p>
+                <button id="btn-resume-game" class="btn-secondary">前回のゲームを再開</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- メイン画面 -->
+    <div id="main-screen" class="screen">
+        <header class="main-header">
+            <h1>Golf Quest</h1>
+            <button id="btn-exit-game" class="btn-header">終了</button>
+        </header>
+
+        <!-- ポイントランキング -->
+        <section class="ranking-section">
+            <h2>現在のポイント</h2>
+            <div id="ranking-list" class="ranking-list"></div>
+        </section>
+
+        <!-- タブ切り替え -->
+        <div class="tab-container">
+            <button class="tab-btn active" data-tab="plus">プラス項目</button>
+            <button class="tab-btn" data-tab="minus">マイナス項目</button>
+            <button class="tab-btn" data-tab="status">所持状況</button>
+        </div>
+
+        <!-- プラス項目パネル -->
+        <section id="plus-panel" class="event-panel active">
+            <div class="event-grid" id="plus-events"></div>
+        </section>
+
+        <!-- マイナス項目パネル -->
+        <section id="minus-panel" class="event-panel">
+            <div class="event-grid" id="minus-events"></div>
+        </section>
+
+        <!-- 所持状況パネル -->
+        <section id="status-panel" class="event-panel">
+            <div id="status-list" class="status-list"></div>
+        </section>
+    </div>
+
+    <!-- プレイヤー選択モーダル -->
+    <div id="player-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">プレイヤーを選択</h2>
+            <p id="modal-description"></p>
+            <div id="modal-players" class="modal-players"></div>
+            <button id="btn-cancel-modal" class="btn-secondary">キャンセル</button>
+        </div>
+    </div>
+
+    <!-- 確認モーダル -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="confirm-title">確認</h2>
+            <p id="confirm-message"></p>
+            <div class="modal-buttons">
+                <button id="btn-confirm-cancel" class="btn-secondary">キャンセル</button>
+                <button id="btn-confirm-ok" class="btn-danger">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
