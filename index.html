@@ -30,10 +30,14 @@
                 <button id="btn-add-player" class="btn-secondary">+ プレイヤー追加</button>
             </div>
             
-            <button id="btn-start-game" class="btn-primary">ゲーム開始</button>
+            <div class="mode-buttons">
+                <button id="btn-start-game" class="btn-primary">Golf Quest</button>
+                <button id="btn-start-vegas" class="btn-vegas">Vegas Golf</button>
+            </div>
             
             <div id="resume-section" class="resume-section hidden">
                 <p>前回のゲームデータがあります</p>
+                <p id="resume-mode-name" class="resume-mode-name"></p>
                 <button id="btn-resume-game" class="btn-secondary">前回のゲームを再開</button>
             </div>
         </div>
@@ -42,7 +46,7 @@
     <!-- メイン画面 -->
     <div id="main-screen" class="screen">
         <header class="main-header">
-            <h1>Golf Quest</h1>
+            <h1 id="header-title">Golf Quest</h1>
             <button id="btn-exit-game" class="btn-header">終了</button>
         </header>
 

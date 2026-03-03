@@ -1,4 +1,4 @@
-// ポイント項目データ
+// ポイント項目データ（通常モード）
 const EVENTS = {
     plus: [
         { id: 'par', title: 'パー', description: 'パーを達成する', points: 1 },
@@ -53,11 +53,71 @@ const EVENTS = {
     ]
 };
 
+// Vegas Golf ポイント項目データ
+const VEGAS_EVENTS = {
+    plus: [
+        { id: 'v_hole_in_one', title: 'Hole in One', description: 'パー3でのホールインワン', points: 5 },
+        { id: 'v_lowest_score', title: 'Lowest Score', description: 'そのホールのグループ内最小スコア', points: 3 },
+        { id: 'v_chip_in', title: 'Chip In', description: 'グリーン外から直接カップイン', points: 2 },
+        { id: 'v_skipper', title: 'Skipper', description: '水切りショットを成功させてフェアウェイへ', points: 2 },
+        { id: 'v_birdie', title: 'Birdie', description: 'バーディーを達成', points: 1 },
+        { id: 'v_eagle', title: 'Eagle', description: 'イーグルを達成', points: 1 },
+        { id: 'v_one_putt', title: 'One Putt', description: '1パットで沈める', points: 1 },
+        { id: 'v_sandy', title: 'Sandy', description: 'バンカーから2打でカップイン', points: 1 },
+        { id: 'v_closest_pin', title: 'Closest to the Pin', description: 'パー3で最もピンに寄せる', points: 1 },
+        { id: 'v_longest_drive', title: 'Longest Drive', description: 'パー5で最も飛距離を出す', points: 1 },
+        { id: 'v_3pars', title: '3 Pars in a Row', description: '3連続パーを達成', points: 1 },
+        { id: 'v_b2b_birdie', title: 'Back2Back Birdie', description: '2連続バーディーを達成', points: 1 },
+        { id: 'v_hulk_gir', title: 'Hulk G.I.R.', description: '規定打数より2打以上少なくグリーンオン', points: 1 },
+        { id: 'v_cowboy_up', title: 'Cowboy Up', description: '前半最下位から後半最小スコアで逆転', points: 1 },
+        { id: 'v_par_tee', title: 'Par Tee', description: 'グループ内で最後にパーを取る', points: 1 },
+        { id: 'v_puttwiser', title: 'Puttwiser', description: 'その日一番のパットを決める（交代制）', points: 1 },
+        { id: 'v_best_shot', title: 'Best Shot', description: '全員一致で選ばれた本日最高のショット', points: 1 },
+    ],
+    minus: [
+        { id: 'v_you_suck', title: 'You Suck', description: '3回連続でハザード（池や砂など）に入れる', points: -3 },
+        { id: 'v_moose', title: 'Moose', description: '1ホールで「10」以上の大叩き', points: -2 },
+        { id: 'v_rake_master', title: 'Rake Master', description: 'バンカーから別のバンカーへ打ち込む', points: -2 },
+        { id: 'v_whiff', title: 'Whiff', description: '完全に空振りをする', points: -2 },
+        { id: 'v_putt_off', title: 'Putt Off', description: 'パットしたボールがグリーンの外まで出る', points: -2 },
+        { id: 'v_water', title: 'Water', description: '池やクリークにボールを入れる', points: -1 },
+        { id: 'v_3putt', title: '3 Putt', description: 'グリーン上で3パット以上', points: -1 },
+        { id: 'v_sand', title: 'Sand', description: 'バンカーにボールを入れる', points: -1 },
+        { id: 'v_trees', title: 'Trees', description: '林や森の中に打ち込む', points: -1 },
+        { id: 'v_ob', title: 'Out of Bounds', description: 'OB（境界外）に打ち込む', points: -1 },
+        { id: 'v_lost_ball', title: 'Lost Ball', description: 'ボール紛失（5分以内に発見できず）', points: -1 },
+        { id: 'v_highest_score', title: 'Highest Score', description: 'そのホールで最も悪いスコア', points: -1 },
+        { id: 'v_78ball', title: '7 Chip / 8 Ball', description: '1ホールで「7」や「8」を叩く', points: -1 },
+        { id: 'v_grave_digger', title: 'Grave Digger', description: 'バンカー脱出に2打以上かかる', points: -1 },
+        { id: 'v_worm_burner', title: 'Worm Burner', description: '地を這うような当たり（チョロ）', points: -1 },
+        { id: 'v_skull', title: 'Skull', description: 'ボールの頭を叩く', points: -1 },
+        { id: 'v_pink_lady', title: 'Pink Lady', description: 'レディースティーに届かない、または60cm以内を外す', points: -1 },
+        { id: 'v_man_made', title: 'Man Made', description: 'カート道などの人工物に当てる', points: -1 },
+        { id: 'v_pop_up', title: 'Pop Up', description: 'ティーショットが真上に上がる（テンプラ）', points: -1 },
+        { id: 'v_magic_carpet', title: 'Magic Carpet', description: 'ボールより大きな芝（ターフ）を飛ばす', points: -1 },
+        { id: 'v_devil', title: 'Devil', description: '3ホール連続で「6」を叩く', points: -1 },
+        { id: 'v_beer', title: 'Beer', description: 'パー3で一番悪いショット（おごり確定）', points: -1 },
+        { id: 'v_stfu', title: 'STFU', description: 'プレー中にしゃべりすぎるマナー違反', points: -1 },
+        { id: 'v_frustration', title: 'Frustration', description: '暴言を吐いたり、クラブを叩く', points: -1 },
+        { id: 'v_covid', title: 'COVID', description: '約1.8m以内のパットを外した最後の人', points: -1 },
+        { id: 'v_cant_putt', title: "Can't Putt This", description: '1番ホールのパットを最後に外す', points: -1 },
+    ]
+};
+
+// 現在のゲームモード（'normal' または 'vegas'）
+let currentMode = 'normal';
+
+// 現在のイベントセットを取得
+function getCurrentEvents() {
+    return currentMode === 'vegas' ? VEGAS_EVENTS : EVENTS;
+}
+
 // アプリケーション状態
 let gameState = {
     players: [],
     items: {},
-    scores: {}
+    scores: {},
+    mode: 'normal'
 };
 
 // DOM要素
@@ -67,13 +127,16 @@ const elements = {
     playerInputs: document.getElementById('player-inputs'),
     btnAddPlayer: document.getElementById('btn-add-player'),
     btnStartGame: document.getElementById('btn-start-game'),
+    btnStartVegas: document.getElementById('btn-start-vegas'),
     btnResumeGame: document.getElementById('btn-resume-game'),
     resumeSection: document.getElementById('resume-section'),
+    resumeModeName: document.getElementById('resume-mode-name'),
     rankingList: document.getElementById('ranking-list'),
     plusEvents: document.getElementById('plus-events'),
     minusEvents: document.getElementById('minus-events'),
     statusList: document.getElementById('status-list'),
     btnExitGame: document.getElementById('btn-exit-game'),
+    headerTitle: document.getElementById('header-title'),
     playerModal: document.getElementById('player-modal'),
     modalTitle: document.getElementById('modal-title'),
     modalDescription: document.getElementById('modal-description'),
@@ -101,7 +164,8 @@ function init() {
 // イベントリスナーの設定
 function setupEventListeners() {
     elements.btnAddPlayer.addEventListener('click', addPlayerInput);
-    elements.btnStartGame.addEventListener('click', startNewGame);
+    elements.btnStartGame.addEventListener('click', () => startNewGame('normal'));
+    elements.btnStartVegas.addEventListener('click', () => startNewGame('vegas'));
     elements.btnResumeGame.addEventListener('click', resumeGame);
     elements.btnExitGame.addEventListener('click', confirmExit);
     elements.btnCancelModal.addEventListener('click', closePlayerModal);
@@ -153,12 +217,17 @@ function updateRemoveButtons() {
 function checkSavedGame() {
     const saved = localStorage.getItem('vegasGolfGame');
     if (saved) {
+        const data = JSON.parse(saved);
+        const modeName = data.mode === 'vegas' ? 'Vegas Golf' : 'Golf Quest';
+        elements.resumeModeName.textContent = `モード: ${modeName}`;
         elements.resumeSection.classList.remove('hidden');
+    } else {
+        elements.resumeSection.classList.add('hidden');
     }
 }
 
 // 新規ゲーム開始
-function startNewGame() {
+function startNewGame(mode) {
     const inputs = elements.playerInputs.querySelectorAll('.player-name-input');
     const players = [];
     
@@ -179,15 +248,20 @@ function startNewGame() {
         return;
     }
     
+    // モードを設定
+    currentMode = mode;
+    const events = getCurrentEvents();
+    
     // ゲーム状態を初期化
     gameState = {
         players: players,
         items: {},
-        scores: {}
+        scores: {},
+        mode: mode
     };
     
     // 全イベントを初期化
-    [...EVENTS.plus, ...EVENTS.minus].forEach(event => {
+    [...events.plus, ...events.minus].forEach(event => {
         gameState.items[event.id] = { owner: null, points: event.points };
     });
     
@@ -197,6 +271,7 @@ function startNewGame() {
     });
     
     saveGame();
+    renderEventCards();
     showMainScreen();
 }
 
@@ -205,6 +280,8 @@ function resumeGame() {
     const saved = localStorage.getItem('vegasGolfGame');
     if (saved) {
         gameState = JSON.parse(saved);
+        currentMode = gameState.mode || 'normal';
+        renderEventCards();
         showMainScreen();
     }
 }
@@ -213,6 +290,11 @@ function resumeGame() {
 function showMainScreen() {
     elements.startScreen.classList.remove('active');
     elements.mainScreen.classList.add('active');
+    
+    // ヘッダータイトルを更新
+    const title = currentMode === 'vegas' ? 'Vegas Golf' : 'Golf Quest';
+    elements.headerTitle.textContent = title;
+    
     updateRanking();
     updateEventCards();
     updateStatusList();
@@ -258,8 +340,9 @@ function switchTab(tabName) {
 
 // イベントカードを描画
 function renderEventCards() {
-    elements.plusEvents.innerHTML = EVENTS.plus.map(event => createEventCard(event, 'plus')).join('');
-    elements.minusEvents.innerHTML = EVENTS.minus.map(event => createEventCard(event, 'minus')).join('');
+    const events = getCurrentEvents();
+    elements.plusEvents.innerHTML = events.plus.map(event => createEventCard(event, 'plus')).join('');
+    elements.minusEvents.innerHTML = events.minus.map(event => createEventCard(event, 'minus')).join('');
     
     // イベントリスナーを追加
     document.querySelectorAll('.event-card').forEach(card => {
@@ -304,7 +387,8 @@ function updateEventCards() {
 
 // イベントカードがクリックされた時
 function onEventCardClick(eventId) {
-    const allEvents = [...EVENTS.plus, ...EVENTS.minus];
+    const events = getCurrentEvents();
+    const allEvents = [...events.plus, ...events.minus];
     const event = allEvents.find(e => e.id === eventId);
     
     if (!event) return;
@@ -387,7 +471,8 @@ function updateRanking() {
 
 // 所持状況リストを更新
 function updateStatusList() {
-    const allEvents = [...EVENTS.plus, ...EVENTS.minus];
+    const events = getCurrentEvents();
+    const allEvents = [...events.plus, ...events.minus];
     
     elements.statusList.innerHTML = gameState.players.map(player => {
         const ownedItems = allEvents.filter(event => 
